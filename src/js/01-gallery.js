@@ -27,17 +27,17 @@ galleryList.addEventListener("click", (event) => {
   `);
   instances.push(instance); // Add instance to array
   instance.show();
-  document.addEventListener("keydown", (event) => onEscPress(event, instance));
+  document.addEventListener("keydown", onEscPress);
 });
 
 // Close instance on Esc key press
-const onEscPress = (event, instance) => {
+const onEscPress = (event) => {
   const ESC_KEYCODE = "Escape";
   if (event.code === ESC_KEYCODE) {
-    instance.close();
-    instances.splice(instances.indexOf(instance), 1); // Remove instance from array
-    document.removeEventListener("keydown", (event) =>
-      onEscPress(event, instance)
+    instances[0].close();
+    instances.length = 0; // Remove instance from array
+    document.removeEventListener("keydown",
+      onEscPress
     );
   }
 };

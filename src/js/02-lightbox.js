@@ -4,7 +4,7 @@ import { galleryItems } from './gallery-items.js';
 const galleryList = document.querySelector(".gallery");
 
 // Add gallery items to list
-galleryItems.forEach(({ preview, original, description }) => {
+const array = galleryItems.map(({ preview, original, description}) => {
   const galleryItem = document.createElement("li");
   galleryItem.classList.add("gallery__item");
 
@@ -19,8 +19,11 @@ galleryItems.forEach(({ preview, original, description }) => {
 
   link.append(image);
   galleryItem.append(link);
-  galleryList.append(galleryItem);
+  return galleryItem;
 });
+galleryList.append(...array);
+
+
 
 // Initialize SimpleLightbox
 const lightbox = new SimpleLightbox(".gallery a", {
